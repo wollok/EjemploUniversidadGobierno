@@ -1,0 +1,34 @@
+import gobierno.*
+
+test "si no pasa nada la imagen es positiva" {
+
+	assert.that(gobierno.imagenPositiva())
+
+}
+test "si hay molestias, la imagen es negativa" {
+	gobierno.molestar(1)
+    gobierno.molestar(1)
+	assert.notThat(gobierno.imagenPositiva())
+}
+
+
+
+test "cuando la universidad reclama en forma clasica,o sea con paro, la imagen pasa a 40" {
+	universidad.reclamar()
+	assert.equals(40,gobierno.imagen())
+}
+test "cuando la universidad hace marchas, la imagen pasa a 38" {
+	universidad.aprenderAReclamar(marcha)
+	universidad.reclamar()
+	assert.equals(38,gobierno.imagen())
+}
+test "cuando la universidad hace clase publica, la imagen pasa a 42" {
+	universidad.aprenderAReclamar(clasePublica)
+	universidad.reclamar()
+	assert.equals(42,gobierno.imagen())
+}
+
+test "el paro deja la imagen en 41" {
+	gobierno.leHacen(paro)
+	assert.equals(41,gobierno.imagen())
+}
