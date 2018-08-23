@@ -1,14 +1,13 @@
 import gobierno.*
 
 test "si no pasa nada la imagen es positiva" {
-
-	assert.that(gobierno.imagenPositiva())
+	assert.that(gobierno.tieneImagenPositiva())
 
 }
 test "si hay molestias, la imagen es negativa" {
 	gobierno.molestar(1)
     gobierno.molestar(1)
-	assert.notThat(gobierno.imagenPositiva())
+	assert.notThat(gobierno.tieneImagenPositiva())
 }
 
 

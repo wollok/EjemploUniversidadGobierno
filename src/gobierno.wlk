@@ -1,6 +1,6 @@
 object gobierno {
-    var property orientacion = neutro
-	var property imagen = 51 
+    var orientacion = neutro
+	var imagen = 51 
 
 	method molestar(molestia) {
 		imagen = imagen - orientacion.cuantoVaria(molestia)
@@ -10,16 +10,15 @@ object gobierno {
 		self.molestar(medida.cuantaImagenAfecta())
 	}
 
-	method aumento() {
-		return 0.15
-	}
-
-	method imagenPositiva() {
+	method tieneImagenPositiva() {
 		return imagen >= 50
 	}
-
+	
+	method imagen(){
+		return imagen
+	}
 }
-object piquete {}
+
 
 object neutro {
 	method cuantoVaria(molestia) {
@@ -31,20 +30,19 @@ object derecha {
 		return molestia * 2
 	}
 }	
-
 object izquierda {
 	method cuantoVaria(molestia){
 		return molestia - 4
     }
-  }
-
+}
 object republicano {
 	method cuantoVaria(molestia){
 		return 34
     }
-  }
+}
+  
+ 
 object universidad {
-
 	var cansancio = 0
 	var presupuesto = 1000
 	var medidaFavorita = paro
@@ -59,36 +57,37 @@ object universidad {
 		gobierno.molestar(1)
 		gobierno.leHacen(medidaFavorita)
 	}
+	
 	method aprenderAReclamar(nuevaMedida){
 		medidaFavorita = nuevaMedida
 	}
-	method sePudreTodo() {
+	
+	method sePudreTodo(){
 		self.medidaDeFuerza()
 		self.aprenderAReclamar(marcha)
 		self.medidaDeFuerza()
 		self.aprenderAReclamar(clasePublica)
 		self.medidaDeFuerza()
 	}
-	
-	
-
 }
 
 object paro {
-
-	method cuantaImagenAfecta() {
+	method cuantaImagenAfecta(){
 		return 10
 	}
-	method cuantoPresupuesto() {return 10}
-
+	method cuantoPresupuesto(){
+		return 10
+	}
 }
 
 object marcha {
 	var manifestantes = 12000
-	method cuantaImagenAfecta() {
+	method cuantaImagenAfecta(){
 		return manifestantes / 1000
 	}
-	method cuantoPresupuesto() {return 12}
+	method cuantoPresupuesto(){
+		return 12
+	}
 }
 
 object clasePublica {
