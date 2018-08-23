@@ -2,12 +2,12 @@ object gobierno {
     var orientacion = neutro
 	var imagen = 51 
 
-	method molestar(molestia) {
-		imagen = imagen - orientacion.cuantoVaria(molestia)
+	method serMolestado(puntos) {
+		imagen = imagen - orientacion.cuantoVariaImagen(puntos)
 	}
 	
-	method leHacen(medida) {
-		self.molestar(medida.cuantaImagenAfecta())
+	method sufrir(medida) {
+		self.serMolestado(medida.cuantaImagenAfecta())
 	}
 
 	method tieneImagenPositiva() {
@@ -21,22 +21,22 @@ object gobierno {
 
 
 object neutro {
-	method cuantoVaria(molestia) {
-		return molestia 
+	method cuantoVariaImagen(puntos) {
+		return puntos 
 	}
 }
 object derecha {
-	method cuantoVaria(molestia) {
-		return molestia * 2
+	method cuantoVariaImagen(puntos) {
+		return puntos * 2
 	}
 }	
 object izquierda {
-	method cuantoVaria(molestia){
-		return molestia - 4
+	method cuantoVariaImagen(puntos){
+		return puntos - 4
     }
 }
 object republicano {
-	method cuantoVaria(molestia){
+	method cuantoVariaImagen(puntos){
 		return 34
     }
 }
@@ -45,29 +45,29 @@ object republicano {
 object universidad {
 	var cansancio = 0
 	var presupuesto = 1000
-	var medidaFavorita = paro
+	var medidaAcordada = paro
 
 	method reclamar() {
 		cansancio = cansancio + 1
-		self.medidaDeFuerza()
+		self.aplicarMedidaDeFuerza()
 	}
 
-	method medidaDeFuerza() {
-		presupuesto = presupuesto + medidaFavorita.cuantoPresupuesto()
-		gobierno.molestar(1)
-		gobierno.leHacen(medidaFavorita)
+	method aplicarMedidaDeFuerza() {
+		presupuesto = presupuesto + medidaAcordada.cuantoPresupuestoGana()
+		gobierno.serMolestado(1)
+		gobierno.sufrir(medidaAcordada)
 	}
 	
-	method aprenderAReclamar(nuevaMedida){
-		medidaFavorita = nuevaMedida
+	method acordarMedida(nuevaMedida){
+		medidaAcordada = nuevaMedida
 	}
 	
 	method sePudreTodo(){
-		self.medidaDeFuerza()
-		self.aprenderAReclamar(marcha)
-		self.medidaDeFuerza()
-		self.aprenderAReclamar(clasePublica)
-		self.medidaDeFuerza()
+		self.aplicarMedidaDeFuerza()
+		self.acordarMedida(marcha)
+		self.aplicarMedidaDeFuerza()
+		self.acordarMedida(clasePublica)
+		self.aplicarMedidaDeFuerza()
 	}
 }
 
@@ -75,17 +75,17 @@ object paro {
 	method cuantaImagenAfecta(){
 		return 10
 	}
-	method cuantoPresupuesto(){
+	method cuantoPresupuestoGana(){
 		return 10
 	}
 }
 
 object marcha {
-	var manifestantes = 12000
+	var cantManifestantes = 12000
 	method cuantaImagenAfecta(){
-		return manifestantes / 1000
+		return cantManifestantes / 1000
 	}
-	method cuantoPresupuesto(){
+	method cuantoPresupuestoGana(){
 		return 12
 	}
 }
@@ -95,7 +95,7 @@ object clasePublica {
 	method cuantaImagenAfecta() {
 		return lugar.size()
 	}
-	method cuantoPresupuesto() {
+	method cuantoPresupuestoGana() {
 		return self.cuantaImagenAfecta() * 2
 	}
 }
